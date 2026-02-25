@@ -219,9 +219,9 @@ body {
 }
 
 .email-company:hover {
-    border-color: #ea4335;
+    border-color: #f0ff4d;
     background: rgba(234, 67, 53, 0.15);
-    color: #ea4335;
+    color: #f0ff4d;
 }
 
 .email-personal:hover {
