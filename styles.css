@@ -233,34 +233,6 @@ body {
     transform: scale(1.1);
 }
 
-/* Header Features - Compact */
-.header-features {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-md);
-    width: 100%;
-    font-size: 11px;
-    color: var(--text-secondary);
-    line-height: 1.4;
-}
-
-.header-features span {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    padding: 4px 8px;
-    background-color: rgba(255, 255, 255, 0.03);
-    border-radius: 6px;
-    border-left: 2px solid var(--accent-primary);
-    white-space: nowrap;
-}
-
-.header-features .feature-icon {
-    font-size: 14px;
-    flex-shrink: 0;
-}
-
 .about-features {
     display: flex;
     flex-direction: column;
