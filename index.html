@@ -3,48 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inés Queipo de Llano - The Q Club</title>
+    <meta name="description" content="Inés Queipo de Llano - CEO & Founder de The Q Club, la plataforma para automatizar colaboraciones entre marcas y creadores">
+    <title>Inés Queipo de Llano - The Q Club ®</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle-container">
+        <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
+            <span class="theme-icon">🌙</span>
+        </button>
+    </div>
+
     <main class="container">
+        <!-- Video Background -->
+        <div class="video-background">
+            <video autoplay muted loop class="bg-video">
+                <source src="https://videos.pexels.com/video-files/3587997/3587997-sd_640_360_25fps.mp4" type="video/mp4">
+            </video>
+            <div class="video-overlay"></div>
+        </div>
+
         <div class="card">
             <!-- Header Section -->
             <section class="header">
                 <img src="https://media.licdn.com/dms/image/v2/D5603AQF10m1XnBGz7Q/profile-displayphoto-scale_400_400/B56Zgr38lXHcAg-/0/1753082743926?e=1773878400&v=beta&t=PYNYSG0ZtZXk_cYF6PbGSYuDCHndVdV7aPyZNHbJe9M" alt="Inés Queipo de Llano" class="profile-photo">
                 <div class="header-info">
-                    <h1>Inés Queipo de Llano</h1>
+                    <h1>Inés Queipo de Llano Hevia</h1>
                     <p class="title">CEO & Founder</p>
-                    <p class="company">The Q Club</p>
+                    <p class="company">
+                        <span>The Q Club ®</span>
+                        <a href="https://theqclub.es/" target="_blank" rel="noopener noreferrer" class="company-link" title="Ir a The Q Club">🔗</a>
+                    </p>
                 </div>
             </section>
 
-            <!-- Bio Section -->
-            <section class="bio">
-                <p>🚀 CEO & Founder apasionada por emprender, innovar y crear comunidades de impacto.
-                💡 Experta en automatización de colaboraciones y experiencias de marca.
-                🌍 Conectando personas, marcas e ideas a través de The Q Club.
-                ✨ Transformando la forma en que las marcas colaboran con creadores.</p>
+            <!-- About Section with Accordion -->
+            <section class="about">
+                <div class="accordion-header" id="accordionToggle">
+                    <h2>Sobre The Q Club</h2>
+                    <span class="accordion-icon">▼</span>
+                </div>
+                <div class="accordion-content" id="accordionContent">
+                    <p class="main-description">
+                        La mejor plataforma para automatizar colaboraciones entre marcas (de experiencias y productos) y creadores de contenido e influencers.
+                    </p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <span class="feature-icon">💡</span>
+                            <span>Experta en Marketing de influencia</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">🌍</span>
+                            <span>Conectando personas con personas a través de The Q Club</span>
+                        </div>
+                        <div class="feature">
+                            <span class="feature-icon">✨</span>
+                            <span>Transformando la forma en que las marcas colaboran con creadores</span>
+                        </div>
+                    </div>
+                </div>
             </section>
 
-            <!-- Links Section -->
+            <!-- Social Links Section - Group 1 -->
             <section class="links">
                 <div class="links-grid">
-                    <a href="https://theqclub.es/" target="_blank" rel="noopener noreferrer" class="link-button">
-                        <span class="icon">🌐</span>
-                        <span>Web</span>
-                    </a>
-                    <a href="https://www.instagram.com/theqclub.es/" target="_blank" rel="noopener noreferrer" class="link-button">
-                        <span class="icon">📷</span>
-                        <span>Instagram</span>
-                    </a>
                     <a href="https://www.linkedin.com/in/inesqll/" target="_blank" rel="noopener noreferrer" class="link-button">
                         <span class="icon">💼</span>
                         <span>LinkedIn</span>
-                    </a>
-                    <a href="https://www.tiktok.com/@theqclub.es" target="_blank" rel="noopener noreferrer" class="link-button">
-                        <span class="icon">🎵</span>
-                        <span>TikTok</span>
                     </a>
                     <a href="https://calendly.com/contacto-theqclub/30min" target="_blank" rel="noopener noreferrer" class="link-button">
                         <span class="icon">📅</span>
@@ -53,19 +79,32 @@
                 </div>
             </section>
 
+            <!-- Social Links Section - Group 2 -->
+            <section class="links">
+                <div class="links-grid">
+                    <a href="https://www.instagram.com/theqclub.es/" target="_blank" rel="noopener noreferrer" class="link-button">
+                        <span class="icon">📷</span>
+                        <span>Instagram</span>
+                    </a>
+                    <a href="https://www.tiktok.com/@theqclub.es" target="_blank" rel="noopener noreferrer" class="link-button">
+                        <span class="icon">🎵</span>
+                        <span>TikTok</span>
+                    </a>
+                </div>
+            </section>
+
             <!-- Contact Section -->
             <section class="contact">
-                <h2>Contacto</h2>
-                
-                <a href="https://wa.me/34628478980" target="_blank" rel="noopener noreferrer" class="contact-button whatsapp">
-                    <span class="icon">💬</span>
-                    <span>WhatsApp</span>
-                </a>
-
-                <a href="mailto:contacto@theqclub.es" class="contact-button">
-                    <span class="icon">📧</span>
-                    <span>contacto@theqclub.es</span>
-                </a>
+                <div class="contact-grid">
+                    <a href="https://wa.me/34628478980" target="_blank" rel="noopener noreferrer" class="contact-button">
+                        <span class="icon">💬</span>
+                        <span>WhatsApp</span>
+                    </a>
+                    <a href="mailto:contacto@theqclub.es" class="contact-button">
+                        <span class="icon">📧</span>
+                        <span>Email</span>
+                    </a>
+                </div>
             </section>
 
             <!-- Add to Contacts Button -->
