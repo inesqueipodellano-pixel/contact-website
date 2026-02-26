@@ -45,19 +45,6 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ============================================
-// Accordion System
-// ============================================
-
-const accordionToggle = document.getElementById('accordionToggle');
-const accordionContent = document.getElementById('accordionContent');
-const accordionIcon = document.querySelector('.accordion-icon');
-
-accordionToggle.addEventListener('click', () => {
-    accordionContent.classList.toggle('open');
-    accordionIcon.classList.toggle('open');
-});
-
-// ============================================
 // vCard Download System
 // ============================================
 
