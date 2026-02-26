@@ -1,4 +1,4 @@
-# Tarjeta Virtual Profesional - Inés Queipo de Llano
+# Tarjeta Virtual Profesional - Ines Queipo de Llano
 
 Una tarjeta virtual profesional premium con diseño moderno, tema oscuro/claro y funcionalidades avanzadas.
 
@@ -146,22 +146,22 @@ python3 -m http.server 8000
 
 ## 📝 Información del Perfil
 
-**Inés Queipo de Llano Hevia**
+**Ines Queipo de Llano Hevia**
 - Cargo: CEO & Founder
-- Empresa: The Q Club ®
+- Empresa: The Q Club
 - Especialidad: Marketing de influencia y automatización de colaboraciones
 - Email: contacto@theqclub.es
 - Teléfono: +34 628 478 980
 
 ## 📄 Licencia
 
-Proyecto personal de Inés Queipo de Llano Hevia - The Q Club ®
+Proyecto personal de Ines Queipo de Llano Hevia - The Q Club
 
 ---
 
 **Última actualización:** Febrero 26, 2026
 
-Inés Queipo de Llano - CEO & Founder of The Q Club
+Ines Queipo de Llano - CEO & Founder of The Q Club
 
 ## License
 

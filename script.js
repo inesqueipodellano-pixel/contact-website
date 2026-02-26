@@ -95,11 +95,11 @@ addContactBtn.addEventListener('click', function() {
     // Generate vCard (VCF format) with complete information
     const vCard = `BEGIN:VCARD
 VERSION:4.0
-FN:Inés Queipo de Llano Hevia
-N:Queipo de Llano Hevia;Inés;;;
-NICKNAME:Inés-TheQClub
+FN:Ines Queipo de Llano Hevia
+N:Queipo de Llano Hevia;Ines;;;
+NICKNAME:Ines-TheQClub
 TITLE:CEO & Founder
-ORG:The Q Club ®
+ORG:The Q Club
 PHOTO;VALUE=URI;TYPE=JPEG:https://media.licdn.com/dms/image/v2/D5603AQF10m1XnBGz7Q/profile-displayphoto-scale_400_400/B56Zgr38lXHcAg-/0/1753082743926?e=1773878400&v=beta&t=PYNYSG0ZtZXk_cYF6PbGSYuDCHndVdV7aPyZNHbJe9M
 EMAIL;TYPE=WORK;PREF=1:contacto@theqclub.es
 TEL;TYPE=CELL;PREF=1:+34628478980
