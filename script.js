@@ -23,11 +23,9 @@ function initializeTheme() {
 function applyTheme(theme) {
     if (theme === 'dark') {
         html.setAttribute('data-theme', 'dark');
-        themeToggle.textContent = '☀️';
         localStorage.setItem('theme', 'dark');
     } else {
         html.removeAttribute('data-theme');
-        themeToggle.textContent = '🌙';
         localStorage.setItem('theme', 'light');
     }
 }
@@ -94,8 +92,8 @@ const addContactBtn = document.getElementById('addContactBtn');
 addContactBtn.addEventListener('click', async function() {
     const btn = document.getElementById('addContactBtn');
     const originalHTML = btn.innerHTML;
-    btn.innerHTML = '<span class="icon">⏳</span><span>Preparando contacto...</span>';
-    btn.style.opacity = '0.8';
+    btn.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 6 12 12 16 14"></polyline></svg><span>Preparando...</span>';
+    btn.style.opacity = '0.6';
     btn.style.pointerEvents = 'none';
     
     try {
@@ -132,6 +130,7 @@ URL;TYPE=HOMEPAGE:https://theqclub.es/
 URL;TYPE=SOCIAL;LABEL=LinkedIn:https://www.linkedin.com/in/inesqll/
 URL;TYPE=SOCIAL;LABEL=Instagram:https://www.instagram.com/theqclub.es/
 URL;TYPE=SOCIAL;LABEL=TikTok:https://www.tiktok.com/@theqclub.es
+URL;TYPE=SOCIAL;LABEL=Calendly:https://calendly.com/contacto-theqclub/30min
 NOTE:CEO & Founder de The Q Club. La mejor plataforma para automatizar colaboraciones entre marcas y creadores. Experta en Marketing de influencia y transformando la forma en que las marcas colaboran con creadores.
 REV:2026-02-26T00:00:00Z
 UID:ines-queipo@theqclub.es
@@ -154,18 +153,27 @@ END:VCARD`;
         // Clean up
         URL.revokeObjectURL(url);
         
-        // Visual feedback animation
-        btn.innerHTML = '<span class="icon">✓</span><span>¡Contacto descargado con foto!</span>';
+        // Send WhatsApp message
+        const whatsappMessage = encodeURIComponent('Hola! Ya he guardado tu contacto.');
+        const whatsappUrl = `https://wa.me/34628478980?text=${whatsappMessage}`;
         
-        // Restore button after 2 seconds
+        // Open WhatsApp in a new window (small delay to ensure download completes)
+        setTimeout(() => {
+            window.open(whatsappUrl, '_blank');
+        }, 500);
+        
+        // Visual feedback animation
+        btn.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>¡Guardado!</span>';
+        
+        // Restore button after 2.5 seconds
         setTimeout(() => {
             btn.innerHTML = originalHTML;
             btn.style.opacity = '1';
             btn.style.pointerEvents = 'auto';
-        }, 2000);
+        }, 2500);
     } catch (error) {
-        console.error('Error al descargar el contacto:', error);
-        btn.innerHTML = '<span class="icon">✗</span><span>Error al descargar</span>';
+        console.error('Error al guardar el contacto:', error);
+        btn.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg><span>Error</span>';
         
         // Restore button after 2 seconds
         setTimeout(() => {

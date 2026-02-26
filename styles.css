@@ -78,13 +78,13 @@ body {
     border: 1px solid var(--border-color);
     background-color: var(--bg-secondary);
     color: var(--text-primary);
-    font-size: 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
     box-shadow: var(--card-shadow);
+    position: relative;
 }
 
 .theme-toggle:hover {
@@ -95,6 +95,31 @@ body {
 
 .theme-toggle:active {
     transform: scale(0.95);
+}
+
+.theme-icon-moon {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.theme-icon-sun {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    display: flex;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+[data-theme="dark"] .theme-icon-moon {
+    opacity: 0;
+}
+
+[data-theme="dark"] .theme-icon-sun {
+    opacity: 1;
 }
 
 /* Container & Layout */
@@ -153,7 +178,7 @@ body {
     border-radius: var(--border-radius);
     box-shadow: var(--card-shadow-lg);
     overflow: hidden;
-    animation: slideIn 0.5s ease-out;
+    animation: slideIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     border: 1px solid var(--border-color);
     position: relative;
     z-index: 2;
@@ -162,7 +187,7 @@ body {
 @keyframes slideIn {
     from {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(30px);
     }
     to {
         opacity: 1;
@@ -224,22 +249,39 @@ body {
     gap: var(--spacing-xs);
 }
 
-.company-link {
-    text-decoration: none;
-    opacity: 0.7;
-    transition: all 0.3s ease;
-    padding: 4px 8px;
-    border-radius: 6px;
+.company-button {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background-color: transparent;
 }
 
-.company-link:hover {
-    opacity: 1;
-    background-color: var(--accent-primary);
-    color: white;
-    transform: scale(1.1);
+.company-button:hover {
+    border-color: var(--accent-primary);
+    background-color: var(--bg-tertiary);
+    color: var(--accent-primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(32, 201, 151, 0.15);
+}
+
+.company-button:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(32, 201, 151, 0.1);
+}
+
+.company-button svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
 }
 
 .about-features {
@@ -275,24 +317,86 @@ body {
     line-height: 1.5;
 }
 
-/* Links Section */
-.links {
+/* CTA Group 1 - Primary Actions */
+.cta-group-1 {
     padding: var(--spacing-lg);
     border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
     display: flex;
     justify-content: center;
-    background-color: var(--bg-primary);
+    animation: fadeInUp 0.6s ease-out 0.2s both;
 }
 
-.links-grid {
+.cta-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1.5fr 1fr;
     gap: var(--spacing-md);
-    max-width: 280px;
+    max-width: 320px;
     width: 100%;
 }
 
-.link-button {
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Primary Button - Schedule Meeting */
+.btn-primary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, var(--accent-primary) 0%, var(--accent-primary-dark) 100%);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 8px 24px rgba(32, 201, 151, 0.3);
+    letter-spacing: 0.3px;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.15);
+    transition: left 0.3s ease;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--accent-primary-dark) 0%, var(--accent-primary) 100%);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(32, 201, 151, 0.4);
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:active {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(32, 201, 151, 0.3);
+}
+
+/* Secondary Buttons */
+.btn-secondary {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -300,37 +404,56 @@ body {
     gap: var(--spacing-sm);
     padding: var(--spacing-md);
     background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    border: 1.5px solid var(--border-color);
     border-radius: var(--border-radius);
     text-decoration: none;
-    color: var(--text-secondary);
     font-size: 13px;
     font-weight: 600;
-    transition: all 0.3s ease;
     cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
 }
 
-.link-button:hover {
-    background-color: var(--accent-primary);
-    color: white;
+.btn-secondary:hover {
+    color: var(--text-primary);
     border-color: var(--accent-primary);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(32, 201, 151, 0.2);
+    background-color: var(--bg-tertiary);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(32, 201, 151, 0.15);
 }
 
-.link-button:active {
-    transform: translateY(-2px);
+.btn-secondary:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(32, 201, 151, 0.1);
 }
 
-.link-button .icon {
-    font-size: 24px;
-}
-
-/* Contact Section */
-.contact {
+/* Social Group 2 */
+.social-group-2 {
     padding: var(--spacing-lg);
     border-bottom: 1px solid var(--border-color);
     background-color: var(--bg-primary);
+    display: flex;
+    justify-content: center;
+    animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-md);
+    max-width: 280px;
+    width: 100%;
+}
+
+/* Contact Group 3 */
+.contact-group-3 {
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--border-color);
+    background-color: var(--bg-primary);
+    display: flex;
+    justify-content: center;
+    animation: fadeInUp 0.6s ease-out 0.4s both;
 }
 
 .contact-grid {
@@ -339,41 +462,67 @@ body {
     gap: var(--spacing-md);
     max-width: 280px;
     width: 100%;
-    margin: 0 auto;
 }
 
-.contact-button {
+/* Icon Styling */
+.btn-primary .icon,
+.btn-secondary .icon,
+.btn-save-contact .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    stroke: currentColor;
+    fill: none;
+}
+
+.btn-primary .icon {
+    width: 28px;
+    height: 28px;
+}
+
+.btn-secondary .icon {
+    width: 24px;
+    height: 24px;
+}
+
+.btn-save-contact .icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* Save Contact Button */
+.btn-save-contact {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--spacing-sm);
-    padding: var(--spacing-md);
+    width: 100%;
+    max-width: 280px;
+    padding: var(--spacing-md) var(--spacing-lg);
     background-color: var(--bg-secondary);
-    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    border: 1.5px solid var(--border-color);
     border-radius: var(--border-radius);
-    text-decoration: none;
-    color: var(--text-secondary);
-    font-size: 13px;
-    font-weight: 600;
-    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 700;
     cursor: pointer;
-    flex-direction: column;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    letter-spacing: 0.3px;
+    position: relative;
 }
 
-.contact-button:hover {
-    background-color: var(--accent-primary);
-    color: white;
+.btn-save-contact:hover {
     border-color: var(--accent-primary);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 20px rgba(32, 201, 151, 0.2);
+    background-color: var(--bg-tertiary);
+    color: var(--text-primary);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(32, 201, 151, 0.15);
 }
 
-.contact-button:active {
-    transform: translateY(-2px);
-}
-
-.contact-button .icon {
-    font-size: 20px;
+.btn-save-contact:active {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(32, 201, 151, 0.1);
 }
 
 /* Footer Section */
@@ -382,6 +531,7 @@ body {
     display: flex;
     justify-content: center;
     background-color: var(--bg-primary);
+    animation: fadeInUp 0.6s ease-out 0.5s both;
 }
 
 .add-contact-btn {
@@ -434,7 +584,6 @@ body {
     .theme-toggle {
         width: 44px;
         height: 44px;
-        font-size: 18px;
     }
 
     body {
@@ -463,37 +612,44 @@ body {
         font-size: 15px;
     }
 
-    .links,
-    .contact,
+    .cta-group-1,
+    .social-group-2,
+    .contact-group-3,
     .footer {
         padding: var(--spacing-md);
     }
 
-    .links-grid,
+    .cta-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .social-grid,
     .contact-grid {
         gap: var(--spacing-sm);
         max-width: 100%;
     }
 
-    .link-button,
-    .contact-button {
+    .btn-primary,
+    .btn-secondary {
         padding: var(--spacing-sm);
         font-size: 12px;
     }
 
-    .link-button .icon,
-    .contact-button .icon {
-        font-size: 20px;
+    .btn-primary .icon,
+    .btn-secondary .icon {
+        width: 20px;
+        height: 20px;
     }
 
-    .add-contact-btn {
+    .btn-save-contact {
         padding: var(--spacing-sm) var(--spacing-md);
         font-size: 13px;
         max-width: 100%;
     }
 
-    .add-contact-btn .icon {
-        font-size: 16px;
+    .btn-save-contact .icon {
+        width: 18px;
+        height: 18px;
     }
 
     .feature {
@@ -528,12 +684,13 @@ body {
         border-width: 2px;
     }
 
-    .links-grid,
+    .cta-grid,
+    .social-grid,
     .contact-grid {
         grid-template-columns: 1fr;
     }
 
-    .add-contact-btn {
+    .btn-save-contact {
         padding: 10px 16px;
         font-size: 12px;
     }

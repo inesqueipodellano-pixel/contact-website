@@ -11,7 +11,20 @@
     <!-- Theme Toggle -->
     <div class="theme-toggle-container">
         <button id="themeToggle" class="theme-toggle" aria-label="Cambiar tema">
-            <span class="theme-icon">🌙</span>
+            <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+            <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
         </button>
     </div>
 
@@ -37,60 +50,91 @@
                 <div class="header-info">
                     <h1>Ines Queipo de Llano Hevia</h1>
                     <p class="title">CEO & Founder</p>
-                    <p class="company">
-                        <span>The Q Club</span>
-                        <a href="https://theqclub.es/" target="_blank" rel="noopener noreferrer" class="company-link" title="Ir a The Q Club">🔗</a>
-                    </p>
+                    <a href="https://theqclub.es/" target="_blank" rel="noopener noreferrer" class="company-button">
+                        The Q Club
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+                            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+                        </svg>
+                    </a>
                 </div>
             </section>
 
-            <!-- Social Links Section - Group 1 -->
-            <section class="links">
-                <div class="links-grid">
-                    <a href="https://www.linkedin.com/in/inesqll/" target="_blank" rel="noopener noreferrer" class="link-button">
-                        <span class="icon">💼</span>
+            <!-- CTA Group 1 (Primary Actions) -->
+            <section class="cta-group-1">
+                <div class="cta-grid">
+                    <!-- Primary Button: Schedule Meeting -->
+                    <a href="https://calendly.com/contacto-theqclub/30min" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="16" y1="2" x2="16" y2="6"></line>
+                            <line x1="8" y1="2" x2="8" y2="6"></line>
+                            <line x1="3" y1="10" x2="21" y2="10"></line>
+                            <circle cx="9" cy="15" r="1"></circle>
+                            <circle cx="15" cy="15" r="1"></circle>
+                        </svg>
+                        <span>Agendar reunión</span>
+                    </a>
+                    <!-- Secondary Action: LinkedIn -->
+                    <a href="https://www.linkedin.com/in/inesqll/" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
                         <span>LinkedIn</span>
                     </a>
-                    <a href="https://calendly.com/contacto-theqclub/30min" target="_blank" rel="noopener noreferrer" class="link-button">
-                        <span class="icon">📅</span>
-                        <span>Calendly</span>
-                    </a>
                 </div>
             </section>
 
-            <!-- Social Links Section - Group 2 -->
-            <section class="links">
-                <div class="links-grid">
-                    <a href="https://www.instagram.com/theqclub.es/" target="_blank" rel="noopener noreferrer" class="link-button">
-                        <span class="icon">📷</span>
+            <!-- Social Group 2 -->
+            <section class="social-group-2">
+                <div class="social-grid">
+                    <a href="https://www.instagram.com/theqclub.es/" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <circle cx="17.5" cy="6.5" r="1.5"></circle>
+                        </svg>
                         <span>Instagram</span>
                     </a>
-                    <a href="https://www.tiktok.com/@theqclub.es" target="_blank" rel="noopener noreferrer" class="link-button">
-                        <span class="icon">🎵</span>
+                    <a href="https://www.tiktok.com/@theqclub.es" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                        </svg>
                         <span>TikTok</span>
                     </a>
                 </div>
             </section>
 
-            <!-- Contact Section -->
-            <section class="contact">
+            <!-- Contact Group 3 -->
+            <section class="contact-group-3">
                 <div class="contact-grid">
-                    <a href="https://wa.me/34628478980" target="_blank" rel="noopener noreferrer" class="contact-button">
-                        <span class="icon">💬</span>
+                    <a href="https://wa.me/34628478980" target="_blank" rel="noopener noreferrer" class="btn-secondary">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
                         <span>WhatsApp</span>
                     </a>
-                    <a href="mailto:contacto@theqclub.es" class="contact-button">
-                        <span class="icon">📧</span>
+                    <a href="mailto:contacto@theqclub.es" class="btn-secondary">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="4" width="20" height="16" rx="2"></rect>
+                            <path d="M22 6l-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 6"></path>
+                        </svg>
                         <span>Email</span>
                     </a>
                 </div>
             </section>
 
-            <!-- Add to Contacts Button -->
+            <!-- Footer: Save Contact -->
             <section class="footer">
-                <button id="addContactBtn" class="add-contact-btn">
-                    <span class="icon">➕</span>
-                    <span>Añadir a contactos</span>
+                <button id="addContactBtn" class="btn-save-contact">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                        <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                        <polyline points="7 3 7 8 15 8"></polyline>
+                    </svg>
+                    <span>Guardar contacto</span>
                 </button>
             </section>
         </div>
