@@ -1,53 +1,165 @@
-# Contact Website
+# Tarjeta Virtual Profesional - Inés Queipo de Llano
 
-A modern, interactive contact card website that allows visitors to download your contact information as a vCard (.vcf) file.
+Una tarjeta virtual profesional premium con diseño moderno, tema oscuro/claro y funcionalidades avanzadas.
 
-## Features
+## ✨ Características Principales
 
-- 📱 **Responsive Design** - Works seamlessly on desktop, tablet, and mobile devices
-- 📥 **One-Click Download** - Download contact information in standard vCard format
-- 🎨 **Modern UI** - Clean and professional user interface
-- ✨ **Visual Feedback** - Interactive button feedback on download
-- 📧 **Complete Contact Info** - Includes email, phone, social media, and more
+### 🎨 Diseño & Tema
+- **Modo Día/Noche** - Toggle elegante con persistencia en localStorage
+- **Diseño Responsivo** - Perfectamente adaptado a móvil y desktop
+- **Paleta Premium** - Estética tipo Stripe/Linear en modo oscuro, minimalista en modo claro
+- **Animaciones Suaves** - Transiciones elegantes sin sobrecargar visualmente
 
-## Project Structure
+### 📱 Contenido Interactivo
+- **Acordeón Elegante** - Descripción expandible de The Q Club
+- **Botones Unificados** - Diseño consistente en todos los controles
+- **Estructura Organizada** - Botones agrupados por categoría:
+  - Grupo 1: LinkedIn + Calendly
+  - Grupo 2: Instagram + TikTok
+  - Grupo 3: WhatsApp + Email
+  - Botón principal: Añadir a contactos
+
+### 🎬 Multimedia
+- **Fondo de Vídeo** - Loop automático sin sonido
+- **Overlay Dinámico** - Diferente según el tema (oscuro/claro)
+- **Optimizado** - Carga rápida y responsive
+- **Accesibilidad** - Respeta preferencias de movimiento reducido
+
+### 📥 Descarga de Contactos
+- **vCard Completo** - Archivo `.vcf` con toda la información:
+  - Nombre completo
+  - Cargo y empresa
+  - Teléfono y email
+  - Sitio web
+  - Redes sociales (LinkedIn, Instagram, TikTok)
+  - Foto de perfil
+  - Descripción profesional
+- **Descarga Automática** - Un clic para descargar
+- **Feedback Visual** - Confirmación de descarga exitosa
+
+### 🔗 Enlaces & Integración
+- **Enlaces Activos**:
+  - 🌐 The Q Club website (theqclub.es)
+  - 💼 LinkedIn Personal
+  - 📷 Instagram @theqclub.es
+  - 🎵 TikTok @theqclub.es
+  - 📅 Calendly para agendar
+  - 💬 WhatsApp directo
+  - 📧 Email profesional
+
+### 📊 SEO & Rendimiento
+- **Meta Tags Completos** - Descripción optimizada
+- **Lazy Loading** - Video optimizado
+- **Accesibilidad Web** - ARIA labels y estructura semantic
+- **Performance** - Código limpio y escalable
+
+## 🚀 Tecnologías
+
+- **HTML5** - Estructura semantic
+- **CSS3** - Variables CSS para tema dinámico
+- **JavaScript ES6+** - Sistema modular y clean
+
+## 📁 Estructura del Proyecto
 
 ```
 mi-primera-web/
-├── index.html      # Main HTML file
-├── script.js       # JavaScript functionality
-├── styles.css      # Styling and layout
-└── README.md       # Project documentation
+├── index.html       # HTML con estructura semantic
+├── styles.css       # CSS con sistema de variables
+├── script.js        # JavaScript modular
+└── README.md        # Esta documentación
 ```
 
-## What's Inside
+## 🎯 Características Técnicas Destacadas
 
-This project features:
-- **vCard Generation** - Creates standard VCF files with complete contact details
-- **Social Media Links** - Direct links to Instagram, LinkedIn, and TikTok
-- **Professional Details** - Title, organization, and bio information
-- **Profile Photo** - Linked profile image from LinkedIn
+### Sistema de Tema
+```javascript
+// localStorage automático
+localStorage.getItem('theme')
+localStorage.setItem('theme', 'dark' | 'light')
+```
 
-## Getting Started
+### CSS Variables Dinámicas
+```css
+:root {
+  --bg-primary, --bg-secondary, --bg-tertiary
+  --text-primary, --text-secondary, --text-tertiary
+  --accent-primary, --accent-primary-dark
+  --border-color
+  --card-shadow, --card-shadow-lg
+}
 
-1. Open `index.html` in your web browser
-2. Click the "Add Contact" button to download the vCard file
+[data-theme="dark"] {
+  /* Variables alternativas */
+}
+```
 
-## Technologies Used
+### vCard Generado
+Formato VCF 4.0 con:
+- Información personal completa
+- Foto del perfil
+- URLs de redes sociales
+- Notas profesionales
+- Timestamp de revisión
 
-- HTML5
-- CSS3
-- JavaScript (ES6+)
+## 💻 Cómo Usar
 
-## Browser Compatibility
+### Abrir en el navegador
+```bash
+# Opción 1: Abrir directamente
+open index.html
 
-Works on all modern browsers:
-- Chrome/Chromium
-- Firefox
-- Safari
-- Edge
+# Opción 2: Con servidor HTTP
+python3 -m http.server 8000
+# Luego visita http://localhost:8000
+```
 
-## Author
+### Cambiar entre temas
+- Haz clic en el botón de tema (🌙/☀️) en la esquina superior derecha
+- Tu preferencia se guarda automáticamente
+
+### Descargar contactos
+- Haz clic en "Añadir a contactos"
+- Se descargará un archivo `.vcf`
+- Importa en tu agenda de contactos
+
+## 📱 Responsive Design
+
+- ✅ Desktop (1024px+)
+- ✅ Tablet (768px - 1023px)
+- ✅ Mobile (360px - 767px)
+- ✅ Small phones (< 360px)
+
+## ♿ Accesibilidad
+
+- Respeta `prefers-reduced-motion`
+- ARIA labels en botones
+- Contraste de colores adecuado
+- Estructura semantic HTML
+
+## 🌐 Navegadores Soportados
+
+- ✅ Chrome/Chromium
+- ✅ Firefox
+- ✅ Safari
+- ✅ Edge
+- ✅ Opera
+
+## 📝 Información del Perfil
+
+**Inés Queipo de Llano Hevia**
+- Cargo: CEO & Founder
+- Empresa: The Q Club ®
+- Especialidad: Marketing de influencia y automatización de colaboraciones
+- Email: contacto@theqclub.es
+- Teléfono: +34 628 478 980
+
+## 📄 Licencia
+
+Proyecto personal de Inés Queipo de Llano Hevia - The Q Club ®
+
+---
+
+**Última actualización:** Febrero 26, 2026
 
 Inés Queipo de Llano - CEO & Founder of The Q Club
 
