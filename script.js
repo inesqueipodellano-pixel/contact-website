@@ -111,6 +111,9 @@ addContactBtn.addEventListener('click', async function() {
             });
         }
         
+        // Detect if mobile
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
         // Convert photo to base64
         const photoUrl = 'https://media.licdn.com/dms/image/v2/D5603AQF10m1XnBGz7Q/profile-displayphoto-scale_400_400/B56Zgr38lXHcAg-/0/1753082743926?e=1773878400&v=beta&t=PYNYSG0ZtZXk_cYF6PbGSYuDCHndVdV7aPyZNHbJe9M';
         const photoBase64 = await urlToBase64(photoUrl);
@@ -136,31 +139,47 @@ REV:2026-02-26T00:00:00Z
 UID:ines-queipo@theqclub.es
 END:VCARD`;
 
-        // Create blob from vCard
-        const blob = new Blob([vCard], { type: 'text/vcard; charset=utf-8' });
-        
-        // Create download link
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.download = 'Ines_Queipo_Llano_Hevia.vcf';
-        
-        // Trigger download
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        
-        // Clean up
-        URL.revokeObjectURL(url);
-        
         // Send WhatsApp message
         const whatsappMessage = encodeURIComponent('Hola! Ya he guardado tu contacto.');
         const whatsappUrl = `https://wa.me/34628478980?text=${whatsappMessage}`;
         
-        // Open WhatsApp in a new window (small delay to ensure download completes)
-        setTimeout(() => {
-            window.open(whatsappUrl, '_blank');
-        }, 500);
+        if (isMobile) {
+            // Mobile: Open WhatsApp first, then attempt to download
+            window.location.href = whatsappUrl;
+            
+            // Attempt download after small delay
+            setTimeout(() => {
+                try {
+                    const blob = new Blob([vCard], { type: 'text/vcard; charset=utf-8' });
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.href = url;
+                    link.download = 'Ines_Queipo_Llano_Hevia.vcf';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    URL.revokeObjectURL(url);
+                } catch (e) {
+                    console.log('Download not available on mobile');
+                }
+            }, 800);
+        } else {
+            // Desktop: Download first, then open WhatsApp
+            const blob = new Blob([vCard], { type: 'text/vcard; charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = 'Ines_Queipo_Llano_Hevia.vcf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            URL.revokeObjectURL(url);
+            
+            // Open WhatsApp after download
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+            }, 500);
+        }
         
         // Visual feedback animation
         btn.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>¡Guardado!</span>';
