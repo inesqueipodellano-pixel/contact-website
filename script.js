@@ -42,7 +42,48 @@ themeToggle.addEventListener('click', () => {
 // Initialize theme on page load
 document.addEventListener('DOMContentLoaded', () => {
     initializeTheme();
+    initializeVideoRotation();
 });
+
+// ============================================
+// Video Rotation System (Background Videos)
+// ============================================
+
+function initializeVideoRotation() {
+    const videos = document.querySelectorAll('.bg-video');
+    let currentVideoIndex = 0;
+
+    // Ensure the first video starts playing
+    if (videos.length > 0) {
+        videos[0].play().catch(err => console.log('Autoplay prevented:', err));
+    }
+
+    // Only rotate if there are multiple videos
+    if (videos.length <= 1) return;
+
+    function switchVideo() {
+        // Hide current video
+        videos[currentVideoIndex].classList.remove('active');
+        videos[currentVideoIndex].pause();
+        
+        // Move to next video
+        currentVideoIndex = (currentVideoIndex + 1) % videos.length;
+        
+        // Show and play next video
+        videos[currentVideoIndex].classList.add('active');
+        videos[currentVideoIndex].currentTime = 0;
+        videos[currentVideoIndex].play().catch(err => console.log('Autoplay prevented:', err));
+    }
+
+    // Listen for video end to switch
+    videos.forEach((video, index) => {
+        video.addEventListener('ended', () => {
+            if (index === currentVideoIndex) {
+                switchVideo();
+            }
+        });
+    });
+}
 
 // ============================================
 // vCard Download System
