@@ -111,9 +111,6 @@ addContactBtn.addEventListener('click', async function() {
             });
         }
         
-        // Detect if mobile
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        
         // Convert photo to base64
         const photoUrl = 'https://media.licdn.com/dms/image/v2/D5603AQF10m1XnBGz7Q/profile-displayphoto-scale_400_400/B56Zgr38lXHcAg-/0/1753082743926?e=1773878400&v=beta&t=PYNYSG0ZtZXk_cYF6PbGSYuDCHndVdV7aPyZNHbJe9M';
         const photoBase64 = await urlToBase64(photoUrl);
@@ -139,47 +136,46 @@ REV:2026-02-26T00:00:00Z
 UID:ines-queipo@theqclub.es
 END:VCARD`;
 
-        // Send WhatsApp message
-        const whatsappMessage = encodeURIComponent('Hola! Ya he guardado tu contacto.');
-        const whatsappUrl = `https://wa.me/34628478980?text=${whatsappMessage}`;
+        // Create vCard blob
+        const blob = new Blob([vCard], { type: 'text/vcard; charset=utf-8' });
+        const url = URL.createObjectURL(blob);
         
-        if (isMobile) {
-            // Mobile: Open WhatsApp first, then attempt to download
-            window.location.href = whatsappUrl;
-            
-            // Attempt download after small delay
-            setTimeout(() => {
-                try {
-                    const blob = new Blob([vCard], { type: 'text/vcard; charset=utf-8' });
-                    const url = URL.createObjectURL(blob);
-                    const link = document.createElement('a');
-                    link.href = url;
-                    link.download = 'Ines_Queipo_Llano_Hevia.vcf';
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
-                    URL.revokeObjectURL(url);
-                } catch (e) {
-                    console.log('Download not available on mobile');
-                }
-            }, 800);
-        } else {
-            // Desktop: Download first, then open WhatsApp
-            const blob = new Blob([vCard], { type: 'text/vcard; charset=utf-8' });
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'Ines_Queipo_Llano_Hevia.vcf';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
-            
-            // Open WhatsApp after download
-            setTimeout(() => {
-                window.open(whatsappUrl, '_blank');
-            }, 500);
+        // Send WhatsApp message - always do this first
+        const whatsappMessage = 'Hola! Ya he guardado tu contacto.';
+        const phoneNumber = '34628478980';
+        
+        // Try multiple WhatsApp URL formats for better compatibility
+        const whatsappUrls = [
+            `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`,
+            `whatsapp://send?phone=${phoneNumber}&text=${encodeURIComponent(whatsappMessage)}`,
+            `intent://send?phone=${phoneNumber}&text=${encodeURIComponent(whatsappMessage)}#Intent;scheme=whatsapp;action=android.intent.action.SENDTO;end`
+        ];
+        
+        // Try to open WhatsApp
+        let whatsappOpened = false;
+        try {
+            // First try the standard web URL
+            window.open(whatsappUrls[0], '_blank');
+            whatsappOpened = true;
+        } catch (e) {
+            console.log('Could not open WhatsApp URL');
         }
+        
+        // Download vCard after a short delay
+        setTimeout(() => {
+            try {
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = 'Ines_Queipo_Llano_Hevia.vcf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+            } catch (e) {
+                console.log('Download error:', e);
+                URL.revokeObjectURL(url);
+            }
+        }, 300);
         
         // Visual feedback animation
         btn.innerHTML = '<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>¡Guardado!</span>';
