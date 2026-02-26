@@ -91,16 +91,41 @@ function initializeVideoRotation() {
 
 const addContactBtn = document.getElementById('addContactBtn');
 
-addContactBtn.addEventListener('click', function() {
-    // Generate vCard (VCF format) with complete information
-    const vCard = `BEGIN:VCARD
+addContactBtn.addEventListener('click', async function() {
+    const btn = document.getElementById('addContactBtn');
+    const originalHTML = btn.innerHTML;
+    btn.innerHTML = '<span class="icon">⏳</span><span>Preparando contacto...</span>';
+    btn.style.opacity = '0.8';
+    btn.style.pointerEvents = 'none';
+    
+    try {
+        // Function to convert image URL to base64
+        async function urlToBase64(url) {
+            const response = await fetch(url);
+            const blob = await response.blob();
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    const base64 = reader.result.split(',')[1];
+                    resolve(base64);
+                };
+                reader.readAsDataURL(blob);
+            });
+        }
+        
+        // Convert photo to base64
+        const photoUrl = 'https://media.licdn.com/dms/image/v2/D5603AQF10m1XnBGz7Q/profile-displayphoto-scale_400_400/B56Zgr38lXHcAg-/0/1753082743926?e=1773878400&v=beta&t=PYNYSG0ZtZXk_cYF6PbGSYuDCHndVdV7aPyZNHbJe9M';
+        const photoBase64 = await urlToBase64(photoUrl);
+        
+        // Generate vCard (VCF format) with complete information including embedded photo
+        const vCard = `BEGIN:VCARD
 VERSION:4.0
 FN:Ines Queipo de Llano Hevia
 N:Queipo de Llano Hevia;Ines;;;
 NICKNAME:Ines-TheQClub
 TITLE:CEO & Founder
 ORG:The Q Club
-PHOTO;VALUE=URI;TYPE=JPEG:https://media.licdn.com/dms/image/v2/D5603AQF10m1XnBGz7Q/profile-displayphoto-scale_400_400/B56Zgr38lXHcAg-/0/1753082743926?e=1773878400&v=beta&t=PYNYSG0ZtZXk_cYF6PbGSYuDCHndVdV7aPyZNHbJe9M
+PHOTO;ENCODING=BASE64;TYPE=JPEG:${photoBase64}
 EMAIL;TYPE=WORK;PREF=1:contacto@theqclub.es
 TEL;TYPE=CELL;PREF=1:+34628478980
 URL;TYPE=HOMEPAGE:https://theqclub.es/
@@ -112,34 +137,41 @@ REV:2026-02-26T00:00:00Z
 UID:ines-queipo@theqclub.es
 END:VCARD`;
 
-    // Create blob from vCard
-    const blob = new Blob([vCard], { type: 'text/vcard; charset=utf-8' });
-    
-    // Create download link
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = 'Ines_Queipo_Llano_Hevia.vcf';
-    
-    // Trigger download
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    // Clean up
-    URL.revokeObjectURL(url);
-    
-    // Visual feedback animation
-    const btn = document.getElementById('addContactBtn');
-    const originalHTML = btn.innerHTML;
-    btn.innerHTML = '<span class="icon">✓</span><span>¡Contacto descargado!</span>';
-    btn.style.opacity = '0.8';
-    btn.style.pointerEvents = 'none';
-    
-    // Restore button after 2 seconds
-    setTimeout(() => {
-        btn.innerHTML = originalHTML;
-        btn.style.opacity = '1';
-        btn.style.pointerEvents = 'auto';
-    }, 2000);
+        // Create blob from vCard
+        const blob = new Blob([vCard], { type: 'text/vcard; charset=utf-8' });
+        
+        // Create download link
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'Ines_Queipo_Llano_Hevia.vcf';
+        
+        // Trigger download
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        // Clean up
+        URL.revokeObjectURL(url);
+        
+        // Visual feedback animation
+        btn.innerHTML = '<span class="icon">✓</span><span>¡Contacto descargado con foto!</span>';
+        
+        // Restore button after 2 seconds
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = 'auto';
+        }, 2000);
+    } catch (error) {
+        console.error('Error al descargar el contacto:', error);
+        btn.innerHTML = '<span class="icon">✗</span><span>Error al descargar</span>';
+        
+        // Restore button after 2 seconds
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+            btn.style.opacity = '1';
+            btn.style.pointerEvents = 'auto';
+        }, 2000);
+    }
 });
